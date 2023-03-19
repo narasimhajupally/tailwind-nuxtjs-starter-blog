@@ -1,0 +1,3 @@
+<template>
+    Tags page
+</template>

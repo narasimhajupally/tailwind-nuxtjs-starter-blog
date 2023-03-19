@@ -1,0 +1,3 @@
+<template>
+    tags index
+</template>

@@ -1,0 +1,3 @@
+<template>
+    individual page
+</template>

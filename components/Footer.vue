@@ -20,8 +20,8 @@ const siteMetadata = useAppConfig().metadata;
                 <NuxtLink href="/">{{ siteMetadata.title }}</NuxtLink>
             </div>
             <div class="mb-8 text-sm text-gray-500 dark:text-gray-400">
-                <NuxtLink href="https://github.com/timlrx/tailwind-nextjs-starter-blog">
-                    Tailwind Nextjs Theme
+                <NuxtLink href="https://github.com/narasimhajupally/tailwind-nuxtjs-starter-blog">
+                    Tailwind Nuxtjs Theme
                 </NuxtLink>
             </div>
         </div>

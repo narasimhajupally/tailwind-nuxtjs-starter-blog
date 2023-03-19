@@ -27,7 +27,7 @@ function onToggleNav() {
             </svg>
         </button>
         <div class='fixed top-0 left-0 z-10 h-full w-full transform bg-gray-200 opacity-95 duration-300 ease-in-out
-                                dark:bg-gray-800' :class="navShow ? 'translate-x-0' : 'translate-x-full'">
+                                            dark:bg-gray-800' :class="navShow ? 'translate-x-0' : 'translate-x-full'">
             <div class="flex justify-end">
                 <button type="button" class="mr-5 mt-11 h-8 w-8 rounded" aria-label="Toggle Menu" @click=onToggleNav>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -40,7 +40,7 @@ function onToggleNav() {
             </div>
             <nav class="fixed mt-8 h-full">
                 <div v-for="link in headerNavLinks" :key=link.title class="px-12 py-4">
-                    <NuxtLink href={link.href} class="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
+                    <NuxtLink :href="link.href" class="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                         @click="onToggleNav">
                         {{ link.title }}
                     </NuxtLink>

@@ -17,6 +17,7 @@
     "nuxt-icon": "^0.3.2"
   },
   "dependencies": {
+    "@fontsource/inter": "^4.5.15",
     "github-slugger": "^2.0.0"
   }
 }
