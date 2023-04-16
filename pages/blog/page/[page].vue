@@ -1,3 +1,3 @@
 <template>
-    individual page
+    Pagination page
 </template>

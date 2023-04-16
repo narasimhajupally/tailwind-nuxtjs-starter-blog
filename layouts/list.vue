@@ -48,13 +48,13 @@ const totalPages = computed(() => Math.ceil(posts.length / POSTS_PER_PAGE));
                         <dl>
                             <dt class="sr-only">Published on</dt>
                             <dd class="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                                <time dateTime={date}>{{ formatDate(post.date) }}</time>
+                                <time :dateTime="post.date">{{ formatDate(post.date) }}</time>
                             </dd>
                         </dl>
                         <div class="space-y-3 xl:col-span-3">
                             <div>
                                 <h3 class="text-2xl font-bold leading-8 tracking-tight">
-                                    <NuxtLink :href="`/blog/${post.slug}`" class="text-gray-900 dark:text-gray-100">
+                                    <NuxtLink :href="`${post._path}`" class="text-gray-900 dark:text-gray-100">
                                         {{ post.title }}
                                     </NuxtLink>
                                 </h3>
