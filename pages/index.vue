@@ -1,5 +1,4 @@
 <script setup>
-const posts = [];
 const MAX_DISPLAY = 5;
 const siteMetadata = useAppConfig().metadata;
 const newsletter = useAppConfig().newsletter;
@@ -9,19 +8,19 @@ const newsletter = useAppConfig().newsletter;
         <Title>{{ siteMetadata.title }}</Title>
         <Meta name="description" :content="siteMetadata.description" />
     </Head>
-    <div class="divide-y divide-gray-200 dark:divide-gray-700">
-        <div class="space-y-2 pt-6 pb-8 md:space-y-5">
-            <h1
-                class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-                Latest
-            </h1>
-            <p class="text-lg leading-7 text-gray-500 dark:text-gray-400">
-                {{ siteMetadata.description }}
-            </p>
-        </div>
-        <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-            <ContentList path="/blog" :query="{ sort: [{ date: -1 }] }" v-slot="{ list }">
-                <template v-for="post in list" :key="post._path">
+    <ContentList path="blog" :query="{ sort: [{ date: -1 }] }" v-slot="{ list }">
+        <div class="divide-y divide-gray-200 dark:divide-gray-700">
+            <div class="space-y-2 pt-6 pb-8 md:space-y-5">
+                <h1
+                    class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+                    Latest
+                </h1>
+                <p class="text-lg leading-7 text-gray-500 dark:text-gray-400">
+                    {{ siteMetadata.description }}
+                </p>
+            </div>
+            <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                <template v-for="post in list.slice(0, MAX_DISPLAY)" :key="post._path">
                     <li class="py-12">
                         <article>
                             <div class="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
@@ -50,7 +49,7 @@ const newsletter = useAppConfig().newsletter;
                                     <div class="text-base font-medium leading-6">
                                         <NuxtLink
                                             class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                                            :aria-label="`Read '${post.title}'`">
+                                            :href="`${post._path}`" :aria-label="`Read '${post.title}'`">
                                             Read more &rarr;
                                         </NuxtLink>
                                     </div>
@@ -59,15 +58,16 @@ const newsletter = useAppConfig().newsletter;
                         </article>
                     </li>
                 </template>
-            </ContentList>
-        </ul>
-    </div>
-    <div v-if="posts.length > MAX_DISPLAY" class="flex justify-end text-base font-medium leading-6">
-        <NuxtLink href="/blog" class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-            aria-label="all posts">
-            All Posts &rarr;
-        </NuxtLink>
-    </div>
+            </ul>
+        </div>
+        <div v-if="list.length > MAX_DISPLAY" class="flex justify-end text-base font-medium leading-6">
+            <NuxtLink href="/blog" class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                aria-label="all posts">
+                All Posts &rarr;
+            </NuxtLink>
+        </div>
+    </ContentList>
+
     <div v-if="newsletter.provider !== ''" class="flex items-center justify-center pt-4">
         <NewsletterForm />
     </div>

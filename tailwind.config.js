@@ -20,7 +20,7 @@ module.exports = {
                 14: "3.5rem",
             },
             fontFamily: {
-                sans: ["InterVariable", ...defaultTheme.fontFamily.sans],
+                sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 primary: colors.teal,
@@ -56,6 +56,9 @@ module.exports = {
                         },
                         pre: {
                             backgroundColor: theme("colors.gray.800"),
+                        },
+                        p: {
+                            marginTop: 0,
                         },
                         code: {
                             color: theme("colors.pink.500"),

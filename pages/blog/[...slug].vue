@@ -4,15 +4,20 @@ const { path } = useRoute()
 const { data: post } = await useAsyncData(`content-${path}`, () => {
     return queryContent().where({ _path: path }).findOne()
 })
-const { data: authorDetails } = await useAsyncData(`author`, () => {
-    return queryContent().where({ _path: "/authors/default" }).findOne()
+const authorList = post.value.authors || ['default'];
+const authorPromise = authorList.map(async (author) => {
+    const authorResults = await queryContent().where({ _path: "/authors/" + author }).findOne()
+    return authorResults;
 })
-// const { page: post, prev, next } = useContent();
-console.log(authorDetails.value);
+const authorDetails = await Promise.all(authorPromise);
+
+const [prev, next] = await queryContent('blog')
+    .only(['_path', 'title'])
+    .sort({ date: -1 })
+    .findSurround(path)
 
 </script>
 <template>
-    <NuxtLayout :name="post.layout || DEFAULT_LAYOUT" :post="post" :authorDetails="[authorDetails]" :next="null"
-        :prev="null">
+    <NuxtLayout :name="post.layout || DEFAULT_LAYOUT" :post="post" :authorDetails="authorDetails" :next="next" :prev="prev">
     </NuxtLayout>
 </template>

@@ -1,8 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "@nuxt/content", "nuxt-icon", "@nuxt/image-edge"],
+    modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "@nuxt/content", "nuxt-icon", "@nuxt/image"],
     colorMode: { classSuffix: "" },
-    css: ["@fontsource/inter/variable-full.css"],
+    css: ["@fontsource-variable/inter/index.css"],
+
     content: {
         markdown: {
             mdc: true,
@@ -17,5 +18,9 @@ export default defineNuxtConfig({
                 sepia: "monokai",
             },
         },
+    },
+
+    devtools: {
+        enabled: true,
     },
 });

@@ -63,7 +63,9 @@ const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day:
                     </dl>
                     <div class="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
                         <div class="prose max-w-none pt-10 pb-8 dark:prose-dark">
-                            <ContentRenderer :value="post" />
+                            <ContentRenderer :value="post">
+                                <ContentRendererMarkdown :value="post"></ContentRendererMarkdown>
+                            </ContentRenderer>
                         </div>
                         <div class="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                             <NuxtLink :href="discussUrl(post._path)" rel="nofollow"> Discuss on Twitter </NuxtLink>
@@ -90,7 +92,7 @@ const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day:
                                         Previous Article
                                     </h2>
                                     <div class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                                        <!-- <Link href={`/blog/${prev.slug}`}>{prev.title}</Link> -->
+                                        <NuxtLink :href="prev._path">{{ prev.title }}</NuxtLink>
                                     </div>
                                 </div>
                                 <div v-if="next">
@@ -98,7 +100,7 @@ const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day:
                                         Next Article
                                     </h2>
                                     <div class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                                        <!-- <Link href={`/blog/${next.slug}`}>{next.title}</Link> -->
+                                        <NuxtLink :href="next._path">{{ next.title }}</NuxtLink>
                                     </div>
                                 </div>
                             </div>

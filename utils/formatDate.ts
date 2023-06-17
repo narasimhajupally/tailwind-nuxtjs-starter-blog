@@ -1,7 +1,7 @@
-export default function (date) {
+export default function (date: string) {
     const siteMetadata = useAppConfig().metadata;
 
-    const options = {
+    const options: Intl.DateTimeFormatOptions = {
         year: "numeric",
         month: "long",
         day: "numeric",

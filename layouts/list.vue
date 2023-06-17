@@ -10,18 +10,18 @@ const { title, posts, currentPage } = defineProps({
         required: true
     }
 });
-const POSTS_PER_PAGE = 5;
+
 const searchValue = ref('');
 const filteredBlogPosts = computed(() => {
     if (!searchValue.value) {
-        return posts.slice(0, POSTS_PER_PAGE);
+        return posts.slice(constants.POSTS_PER_PAGE * (currentPage - 1), currentPage * constants.POSTS_PER_PAGE);
     }
     return posts.filter((post) => {
         const searchContent = post.title + post.summary + post.tags.join(' ')
         return searchContent.toLowerCase().includes(searchValue.toLowerCase())
     })
 });
-const totalPages = computed(() => Math.ceil(posts.length / POSTS_PER_PAGE));
+const totalPages = computed(() => Math.ceil(posts.length / constants.POSTS_PER_PAGE));
 </script>
 <template>
     <div class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -71,5 +71,5 @@ const totalPages = computed(() => Math.ceil(posts.length / POSTS_PER_PAGE));
             </template>
         </ul>
     </div>
-    <Pagination v-show="totalPages > 1 && !searchValue" :currentPage="currentPage" :totalPages="totalPages" />
+    <Pagination v-show="totalPages > 1 && !searchValue" :current-page="currentPage" :total-pages="totalPages" />
 </template>
