@@ -1,5 +1,5 @@
 <script setup>
-const { title, posts, currentPage } = defineProps({
+const { title, posts, currentPage, pagination } = defineProps({
     title: {
         required: true
     },
@@ -7,19 +7,25 @@ const { title, posts, currentPage } = defineProps({
         required: true
     },
     currentPage: {
-        required: true
+        default: 1,
+    },
+    pagination: {
+        default: true,
     }
 });
 
 const searchValue = ref('');
 const filteredBlogPosts = computed(() => {
-    if (!searchValue.value) {
+    if (searchValue.value) {
+        return posts.filter((post) => {
+            const searchContent = post.title + post.summary + post.tags.join(' ')
+            return searchContent.toLowerCase().includes(searchValue.toLowerCase())
+        })
+    }
+    if (pagination) {
         return posts.slice(constants.POSTS_PER_PAGE * (currentPage - 1), currentPage * constants.POSTS_PER_PAGE);
     }
-    return posts.filter((post) => {
-        const searchContent = post.title + post.summary + post.tags.join(' ')
-        return searchContent.toLowerCase().includes(searchValue.toLowerCase())
-    })
+    return posts;
 });
 const totalPages = computed(() => Math.ceil(posts.length / constants.POSTS_PER_PAGE));
 </script>

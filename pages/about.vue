@@ -1,3 +1,6 @@
+<script setup>
+const authorDetails = await queryContent().where({ _path: "/authors/default" }).findOne();
+</script>
 <template>
-    About page
+    <NuxtLayout name="author" :author-details="authorDetails"></NuxtLayout>
 </template>

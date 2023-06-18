@@ -7,7 +7,7 @@ const { post, authorDetails, next, prev } = defineProps([
 
 const siteMetadata = useAppConfig().metadata;
 
-const editUrl = (fileName) => `${siteMetadata.siteRepo}/blob/master/data/blog/${fileName}`
+const editUrl = (fileName) => `${siteMetadata.siteRepo}/blob/master/content/${fileName}`
 const discussUrl = (slug) =>
     `https://mobile.twitter.com/search?q=${encodeURIComponent(
         `${siteMetadata.siteUrl}/blog/${slug}`
@@ -63,9 +63,7 @@ const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day:
                     </dl>
                     <div class="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
                         <div class="prose max-w-none pt-10 pb-8 dark:prose-dark">
-                            <ContentRenderer :value="post">
-                                <ContentRendererMarkdown :value="post"></ContentRendererMarkdown>
-                            </ContentRenderer>
+                            <ContentRenderer :value="post"></ContentRenderer>
                         </div>
                         <div class="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                             <NuxtLink :href="discussUrl(post._path)" rel="nofollow"> Discuss on Twitter </NuxtLink>

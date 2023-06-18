@@ -1,4 +1,22 @@
 export default defineAppConfig({
+    head: {
+        meta: [
+            { name: "viewport", content: "width=device-width, initial-scale=1" },
+            { name: "msapplication-TileColor", content: "#000000" },
+            { name: "theme-color", media: "(prefers-color-scheme: light)", content: "#fff" },
+            { name: "theme-color", media: "(prefers-color-scheme: dark)", content: "#000" },
+        ],
+        link: [
+            { rel: "apple-touch-icon", sizes: "76x76", href: "/favicons/apple-touch-icon.png" },
+            { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicons/favicon-32x32.png" },
+            { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicons/favicon-16x16.png" },
+            { rel: "manifest", href: "/favicons/site.webmanifest" },
+            { rel: "mask-icon", href: "/favicons/safari-pinned-tab.svg", color: "#5bbad5" },
+        ],
+        style: [],
+        script: [],
+        noscript: [],
+    },
     metadata: {
         title: "Nuxt.js Starter Blog",
         author: "Jupally",
@@ -6,11 +24,11 @@ export default defineAppConfig({
         description: "A blog created with Nuxt.js and Tailwind.css",
         language: "en-us",
         theme: "system", // system, dark or light
-        siteUrl: "https://tailwind-nextjs-starter-blog.vercel.app",
-        siteRepo: "https://github.com/timlrx/tailwind-nextjs-starter-blog",
-        siteLogo: "/static/images/logo.png",
-        image: "/static/images/avatar.png",
-        socialBanner: "/static/images/twitter-card.png",
+        siteUrl: "https://tailwind-nuxtjs-starter-blog.vercel.app",
+        siteRepo: "https://github.com/narasimhajupally/tailwind-nuxtjs-starter-blog",
+        siteLogo: "/images/logo.png",
+        image: "/images/avatar.png",
+        socialBanner: "/images/twitter-card.png",
         email: "address@yoursite.com",
         github: "https://github.com",
         twitter: "https://twitter.com/Twitter",
